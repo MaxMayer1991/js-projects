@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task3</title>
+</head>
+<body>
+<h1>Asynchronous script</h1>
+<div id="web">
+    <input type="text" id="rangeInput" placeholder="Countdown time (or range f.e. 10-5)" style="display: none;"/>
+    <button id="startButton" style="display: none;">Start countdown</button>
+    <p id="message"></p>
+</div>
+<script>
+    setTimeout(() => {
+        document.getElementById("message").innerText = "Enter countdown time (or range f.e. 10-5)"
+        document.getElementById('rangeInput').style.display = "inline"
+        document.getElementById('startButton').style.display = "inline"
+        let timeout = setTimeout(() => {
+            document.getElementById('message').innerText = "Time has expired!"
+            document.getElementById('rangeInput').disabled = "true"
+            document.getElementById('startButton').disabled = "true"
+            startCountdown()
+        }, 5000)
+        document.getElementById('startButton').onclick = () => {
+            clearTimeout(timeout);
+            startCountdown();
+        }
+    }, 3000)
+    function startCountdown() {
+        let input = document.getElementById('rangeInput');
+        let inputValue = input.value;
+        input.disabled = true;
+        document.getElementById('startButton').disabled = true;
+
+        let range = inputValue.includes('-') ? inputValue.split('-').map(num => parseInt(num)) : [parseInt(inputValue), 0];
+        if (range.some(isNaN) || range[0] < range[1]) {
+            document.getElementById('message').innerText = "An invalid value or range was provided. The countdown cannot start.";
+            return;
+        }
+
+        let [start, end] = range;
+        let intervalHandler = setInterval(() => {
+            document.getElementById('message').innerText = `Countdown: ${start}`;
+            if (start === end) {
+                clearInterval(intervalHandler);
+                document.getElementById('message').innerText = "Countdown is ended!";
+            }
+            start > end ? start-- : start++;
+        }, 1000);
+    }
+
+</script>
+</body>
+</html>

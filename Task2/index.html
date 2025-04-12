@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+</head>
+<body>
+    <label>Podaj 10 liczb: </label>
+    <input type="text" id="array"> <input class='styled' type="button" value="Analiza" onclick="divisibility(), zeroexisting(), arithmeticmean()">
+    <br>
+    <label id="div"></label><br><label id="zero"></label><br><label id="mean"></label>
+    <br>
+    <label for="radiusInput">Podaj promień koła:</label>
+    <input type="number" id="radiusInput">
+    <input  class='styled' type="button" onclick="calculateArea()" value="Calculate"><br>
+    <p id="result"></p>
+
+
+    <p>Obliczanie pola koła</p>
+    <label for="radiusInput">Podaj promień koła:</label>
+    <input type="number" id="radiusInput2">
+    <label for="samplesInput">Liczba próbek (domyślnie 1):</label>
+    <input type="number" id="samplesInput" value="1">
+    <button onclick="calculateAreas()">Oblicz pola</button>
+    <p id="result1"></p>
+    <p id="result2"></p>
+
+<script src="main.js"></script>
+</body>
+</html>
